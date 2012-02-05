@@ -8,7 +8,7 @@ except:
 code = f.read()
 f.close()
 global tape
-tape = [i-i for i in xrange(30000)]
+tape = [0 for i in xrange(30000)]
 global cur_cell
 cur_cell = 0
 counter = 0
@@ -27,11 +27,10 @@ def control_head(char):
     else: return False
 
 while counter != len(code):
-    if code[counter] == "[": listy = counter
+    if code[counter] == "[": hold_place = counter
 
     if code[counter] == "]":
-        if tape[cur_cell] != 0: counter = listy
-
+        if tape[cur_cell] != 0: counter = hold_place
 
     control_head(code[counter])
 
