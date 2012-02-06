@@ -2,13 +2,36 @@
 import sys
 sys.path.append('../lib/')
 from brainy import Brainy
-
-try: f = open(sys.argv[1])
-except:
-    print "Need to specify a file"
-    quit()
-code = f.read()
-f.close()
-
 bf = Brainy()
-bf.eval(code)
+
+if len(sys.argv) > 1:
+    try: f = open(sys.argv[1])
+    except:
+        print "File not found"
+        quit()
+
+    code = f.read()
+    f.close()
+    bf.eval(code)
+    bf.print_output()
+    quit()
+
+print "Welcome to the Brainy REPL"
+print "To quit just type 'q'\n"
+user_in = ''
+
+while True:
+    try: user_in = raw_input(">>> ")
+    except (EOFError, KeyboardInterrupt):
+        print "\nThank you, bye!"
+        break
+        quit()
+
+    if user_in == 'q':
+        print "Thank you, bye!"
+        break
+        quit()
+
+    else:
+        bf.eval(user_in)
+        print bf.get_tape()

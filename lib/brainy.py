@@ -25,5 +25,18 @@ class Brainy():
 
             self.control_head(code[self.place])
             self.place += 1
+        self.place = 0
 
-        print ''.join(self.output)
+    def get_output(self): return ''.join(self.output)
+
+    def print_output(self): print self.get_output()
+
+    def get_tape(self, start=0, end=10):
+        '''Pretty prints the tape values'''
+        tmp = ''
+        for i in xrange(len(self.tape[start:end])):
+            if i == self.cur_cell:
+                tmp += "[" + str(self.tape[i]) + "] "
+            else: tmp += ":" + str(self.tape[i]) + ": "
+        return tmp
+
