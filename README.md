@@ -8,12 +8,14 @@ Setup
 =========
 
 Install:
+
     $ sudo python setup.py install
 
 
 Running
 ========
 To run type:
+
     $ brainy
 
     or
