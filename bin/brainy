@@ -1,0 +1,14 @@
+#!/usr/bin/python
+import sys
+sys.path.append('../lib/')
+from brainy import Brainy
+
+try: f = open(sys.argv[1])
+except:
+    print "Need to specify a file"
+    quit()
+code = f.read()
+f.close()
+
+bf = Brainy()
+bf.eval(code)
