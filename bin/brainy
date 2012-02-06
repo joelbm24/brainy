@@ -25,12 +25,10 @@ while True:
     except (EOFError, KeyboardInterrupt):
         print "\nThank you, bye!"
         break
-        quit()
 
     if user_in == 'q':
         print "Thank you, bye!"
         break
-        quit()
 
     else:
         bf.eval(user_in)
