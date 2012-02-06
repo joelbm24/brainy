@@ -13,7 +13,6 @@ if len(sys.argv) > 1:
     code = f.read()
     f.close()
     bf.eval(code)
-    bf.print_output()
     quit()
 
 print "Welcome to the Brainy REPL"
