@@ -7,7 +7,7 @@ Brainy: A brainfuck interpreter/repl written in python
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+    any later version.
 
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -36,6 +36,11 @@ if len(sys.argv) > 1:
 
 print "Welcome to the Brainy REPL"
 print "To quit just type 'q' or press ctrl+d\n"
+print '''Brainy  Copyright (C) 2012  Joel Buchheim-Moore
+This program comes with ABSOLUTELY NO WARRANTY; for details type `w'.
+This is free software, and you are welcome to redistribute it
+under certain conditions; type `c' for details.
+'''
 user_in = ''
 
 while True:
@@ -47,6 +52,20 @@ while True:
     if user_in == 'q':
         print "Thank you, bye!"
         break
+
+    elif user_in == 'w':
+        print '''This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+        '''
+
+    elif user_in == 'c':
+        print '''This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+        '''
 
     else:
         bf.eval(user_in)
