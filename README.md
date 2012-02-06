@@ -5,7 +5,7 @@ Brainy
 Brainy is a brainfuck interpreter and repl written in python.
 
 Setup
-=========
+---------
 
 Install:
 
@@ -13,7 +13,7 @@ Install:
 
 
 Running
-========
+---------
 To run type:
 
     $ brainy
