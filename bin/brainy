@@ -41,6 +41,8 @@ This is free software, and you are welcome to redistribute it
 under certain conditions; type `c' for details.
 '''
 user_in = ''
+tape_start = 0
+tape_end = 10
 
 while True:
     try: user_in = raw_input(">>> ")
@@ -66,6 +68,10 @@ while True:
     (at your option) any later version.
         '''
 
+    elif user_in == 'set tape':
+        tape_start = input('Set beginning cell: ')
+        tape_end = input(' Set ending cell: ')
+
     else:
         bf.eval(user_in)
-        print bf.get_tape()
+        print bf.get_tape(tape_start, tape_end)
