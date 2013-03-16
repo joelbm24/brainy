@@ -22,7 +22,9 @@ class Brainy():
     def __init__(self):
         self.tape = [0 for i in xrange(30000)]
         self.cur_cell = 0
+        self.depth = 0
         self.place = 0
+        self.loop_list = []
         self.__output = ''
 
 
@@ -37,17 +39,26 @@ class Brainy():
         else: return False
 
     def eval(self, code):
-        while self.place != len(code):
+        while self.place < len(code):
             if code[self.place] == "[":
-                hold_place = self.place
+                self.depth += 1
+                self.loop_list.append(self.place)
+                self.place += 1
 
-            if code[self.place] == "]":
-                if self.tape[self.cur_cell] != 0:
-                    self.place = hold_place
+            elif code[self.place] == "]":
+                if self.tape[self.cur_cell] > 0:
+                    self.place = self.loop_list[self.depth-1]
+                    self.loop_list.pop(-1)
+                    self.depth -= 1
 
-            self.control_head(code[self.place])
-            self.place += 1
-        self.place = 0
+                elif self.tape[self.cur_cell] == 0:
+                    self.loop_list.pop(-1)
+                    self.depth -= 1
+                    self.place += 1
+            else:
+                self.control_head(code[self.place])
+                self.place += 1
+        self.depth = 0
 
     def get_output(self): return self.__output
 
