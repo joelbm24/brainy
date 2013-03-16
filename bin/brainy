@@ -55,8 +55,6 @@ under certain conditions; type `c' for details.
 '''
 user_in = ''
 
-
-
 while True:
     try: user_in = raw_input(">>> ")
     except (EOFError, KeyboardInterrupt):
@@ -88,8 +86,11 @@ while True:
             print "st: requires two arguments"
 
     elif user_in.split(" ")[0] == 'import':
-        import_script(user_in.split(" ")[1], False)
-        display()
+        try:
+            import_script(user_in.split(" ")[1], False)
+            display()
+        except:
+            "import: requires a filename"
 
     elif user_in == 'h':
         print 'w: print warrenty'
