@@ -34,7 +34,7 @@ if len(sys.argv) > 1:
     quit()
 
 print "Welcome to the Brainy REPL"
-print "To quit just type 'q' or press ctrl+d\n"
+print "For help type 'h'. To quit just type 'q' or press ctrl+d\n"
 print '''Brainy  Copyright (C) 2012  Joel Buchheim-Moore
 This program comes with ABSOLUTELY NO WARRANTY; for details type `w'.
 This is free software, and you are welcome to redistribute it
@@ -68,9 +68,13 @@ while True:
     (at your option) any later version.
         '''
 
-    elif user_in == 'set tape':
+    elif user_in == 'st':
         tape_start = input('Set beginning cell: ')
-        tape_end = input(' Set ending cell: ')
+        tape_end = input('Set ending cell: ')
+
+    elif user_in == 'h':
+        print 'st: allows you to change your view of the tape'
+        print 'q: quit the repl'
 
     else:
         bf.eval(user_in)

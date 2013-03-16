@@ -58,6 +58,7 @@ class Brainy():
             else:
                 self.control_head(code[self.place])
                 self.place += 1
+        self.place = 0
         self.depth = 0
 
     def get_output(self): return self.__output
