@@ -90,7 +90,7 @@ while True:
             import_script(user_in.split(" ")[1], False)
             display()
         except:
-            "import: requires a filename"
+            print "import: requires a filename"
 
     elif user_in == 'h':
         print 'w: print warrenty'
