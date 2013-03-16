@@ -21,3 +21,9 @@ To run type:
     or
 
     $ brainy <file name>
+
+I also recommend using rlwrap, it adds readline functionality.
+
+With rlwrap you would type
+
+    $ rlwrap brainy

@@ -22,27 +22,40 @@ import sys
 from brainy import bfinter
 bf = bfinter.Brainy()
 
-if len(sys.argv) > 1:
-    try: f = open(sys.argv[1])
+def import_script(file_name, exit=True):
+    try:
+        f = open(file_name)
+        bf.eval(f.read())
+        f.close()
     except:
-        print "File not found"
-        quit()
+        if exit:
+            print "ERROR: File not found"
+            quit()
+        else:
+            print "ERROR: File not found"
+            pass
 
-    code = f.read()
-    f.close()
-    bf.eval(code)
+def display():
+    if bf.cur_cell > bf.tape_end:
+        bf.tape_end = bf.cur_cell
+        bf.tape_start = bf.tape_end - bf.tape_length
+    print bf.get_tape(bf.tape_start, bf.tape_end)
+
+if len(sys.argv) > 1:
+    import_script(sys.argv[1])
     quit()
+
 
 print "Welcome to the Brainy REPL"
 print "For help type 'h'. To quit just type 'q' or press ctrl+d\n"
-print '''Brainy  Copyright (C) 2012  Joel Buchheim-Moore
+print '''Brainy  Copyright (C) 2012-2013  Joel Buchheim-Moore
 This program comes with ABSOLUTELY NO WARRANTY; for details type `w'.
 This is free software, and you are welcome to redistribute it
 under certain conditions; type `c' for details.
 '''
 user_in = ''
-tape_start = 0
-tape_end = 10
+
+
 
 while True:
     try: user_in = raw_input(">>> ")
@@ -64,18 +77,27 @@ while True:
     elif user_in == 'c':
         print '''This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+    the Free Software Foundation, either version 3 of the License, or any later version.
         '''
 
-    elif user_in == 'st':
-        tape_start = input('Set beginning cell: ')
-        tape_end = input('Set ending cell: ')
+    elif user_in.split(" ")[0] == 'st':
+        try:
+            tape_start = int(user_in.split(" ")[1])
+            tape_end = int(user_in.split(" ")[2])
+        except:
+            print "st: requires two arguments"
+
+    elif user_in.split(" ")[0] == 'import':
+        import_script(user_in.split(" ")[1], False)
+        display()
 
     elif user_in == 'h':
-        print 'st: allows you to change your view of the tape'
+        print 'w: print warrenty'
+        print 'c: print conditions'
+        print 'st: set tape, allows you to set the range of the tape view'
         print 'q: quit the repl'
+        print 'import: import a BF file'
 
     else:
         bf.eval(user_in)
-        print bf.get_tape(tape_start, tape_end)
+        display()

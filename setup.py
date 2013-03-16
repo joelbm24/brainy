@@ -11,5 +11,5 @@ setup(
     url='http://github.com/joelbm24/brainy',
     license='LICENSE.txt',
     description='brainfuck interpreter',
-    long_description=open('README.txt').read(),
+    long_description=open('README.md').read(),
 )
