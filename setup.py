@@ -2,7 +2,7 @@ from distutils.core import setup
 
 setup(
     name='Brainy',
-    version='0.1.1',
+    version='0.1.3',
     author='Joel Buchheim-Moore',
     author_email='joelbm24@gmail.com',
     scripts=['bin/brainy'],
